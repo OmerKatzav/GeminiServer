@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
-        <OutputType>Library</OutputType>
+        <OutputType>Exe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>

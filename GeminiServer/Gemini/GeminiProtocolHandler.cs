@@ -2,11 +2,11 @@ using System.Text;
 using GeminiServer.Config;
 using Microsoft.Extensions.Options;
 
-namespace GeminiServer.Core;
+namespace GeminiServer.Gemini;
 
-public class GeminiProtocolHandler(IOptions<NetworkConfig> config) : IProtocolHandler<GeminiRequest, GeminiResponse, GeminiRequestMetadata>
+public class GeminiProtocolHandler(IOptions<NetworkConfig> config) : IProtocolHandler<GeminiRequest, GeminiResponse>
 {
-    public async Task<GeminiRequest> GetRequestAsync(Stream stream, GeminiRequestMetadata requestMetadata)
+    public async Task<GeminiRequest> GetRequestAsync(Stream stream)
     {
         var requestBuffer = new byte[1024 + 2];
         var lastPos = -1;
@@ -28,7 +28,7 @@ public class GeminiProtocolHandler(IOptions<NetworkConfig> config) : IProtocolHa
         try
         {
             var decoder = new UTF8Encoding(false, true);
-            requestString = decoder.GetString(requestBuffer);
+            requestString = await Task.Run(() => decoder.GetString(requestBuffer.AsSpan(0, lastPos - 2 + 1)));
         }
         catch (Exception ex)
         {
@@ -56,7 +56,6 @@ public class GeminiProtocolHandler(IOptions<NetworkConfig> config) : IProtocolHa
         
         return new GeminiRequest
         {
-            Metadata = requestMetadata,
             Path = Uri.UnescapeDataString(uri.AbsolutePath),
             QueryString = Uri.UnescapeDataString(uri.Query),
         };
@@ -64,7 +63,7 @@ public class GeminiProtocolHandler(IOptions<NetworkConfig> config) : IProtocolHa
 
     public async Task SendResponseAsync(Stream stream, GeminiResponse response)
     {
-        var encodedHeader = Encoding.UTF8.GetBytes($"{(int)response.StatusCode} {response.Header}\r\n");
+        var encodedHeader = await Task.Run(() => Encoding.UTF8.GetBytes($"{(int)response.StatusCode} {response.Header}\r\n"));
         if (response is { StatusCode: GeminiStatusCodes.Success, Content: null }) throw new ArgumentException("Body of response is null");
         if (response.StatusCode != GeminiStatusCodes.Success || response.Content == null)
         {

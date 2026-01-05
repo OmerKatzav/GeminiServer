@@ -1,6 +1,6 @@
 namespace GeminiServer;
 
-public interface IClientHandler<in TRequestMetadata>
+public interface IClientHandler
 {
-    Task HandleAsync(Stream stream, TRequestMetadata requestMetadata, CancellationToken ct);
+    Task HandleAsync(Stream stream, IDictionary<string, object?> metadata, CancellationToken ct);
 }

@@ -1,18 +1,11 @@
 using GeminiServer;
-using GeminiServer.Adapters;
-using GeminiServer.Config;
+using GeminiServer.Core;
+using GeminiServer.Gemini;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-
-var builder = Host.CreateApplicationBuilder();
-builder
-    .Configure()
-    .UseTls();
-
-builder.Services.AddSingleton<IRequestHandler, GeminiRequestParser>();
-builder.Services.AddSingleton<IGeminiRequestHandler, StaticFileRequestHandler>();
+var builder = GeminiApp.CreateApplicationBuilder();
 builder.Services.AddSingleton<IMimeService, MimeService>();
-
 var app = builder.Build();
+app.UseMiddleware<GeminiStaticFileMiddleware>();
 await app.RunAsync();

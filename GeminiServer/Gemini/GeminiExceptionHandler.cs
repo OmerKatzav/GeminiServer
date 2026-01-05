@@ -1,8 +1,8 @@
-namespace GeminiServer.Core;
+namespace GeminiServer.Gemini;
 
-public class GeminiExceptionHandler : IExceptionHandler<GeminiRequestMetadata, GeminiResponse>
+public class GeminiExceptionHandler : IExceptionHandler<GeminiResponse>
 {
-    public Task<GeminiResponse> HandleAsync(Exception ex, GeminiRequestMetadata requestMetadata)
+    public Task<GeminiResponse> HandleAsync(Exception ex, IDictionary<string, object?> requestMetadata)
     {
         var statusCode = GeminiStatusCodes.TempFailure;
         var header = string.Empty;

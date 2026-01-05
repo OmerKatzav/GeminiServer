@@ -12,7 +12,7 @@ public static class Extensions
     {
         return collection
             .AddHostedService<Tcp>()
-            .AddSingleton<IPresentation, Tls>();
+            .AddSingleton<IPresentationFactory, TlsFactory>();
     }
 
     public static IHostApplicationBuilder UseTls(this IHostApplicationBuilder builder)

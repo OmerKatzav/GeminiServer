@@ -1,14 +1,20 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GeminiServer.Core;
 
-public class MiddlewareRegistry<TState, TBaseMiddleware>(IServiceProvider serviceProvider) : IMiddlewareRegistry<TState> where TBaseMiddleware : IMiddleware<TState>
+public class MiddlewareRegistry<TState,[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TBaseMiddleware>(IServiceProvider serviceProvider) : IMiddlewareRegistry<TState> where TBaseMiddleware : IMiddleware<TState>
 {
     private readonly List<IMiddleware<TState>> _middlewares = [];
     
-    public void RegisterMiddleware<TMiddleware>() where TMiddleware : IMiddleware<TState>
+    public void RegisterMiddleware<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TMiddleware>() where TMiddleware : IMiddleware<TState>
     {
-        _middlewares.Add(ActivatorUtilities.CreateInstance<TMiddleware>(serviceProvider));
+        RegisterMiddleware(ActivatorUtilities.CreateInstance<TMiddleware>(serviceProvider));
+    }
+
+    public void RegisterMiddleware(IMiddleware<TState> middleware)
+    {
+        _middlewares.Add(middleware);
     }
 
     public Invoke<TState> Wire()

@@ -1,7 +1,7 @@
 namespace GeminiServer;
 
-public interface IProtocolHandler<TRequest, in TResponse, in TRequestMetadata>
+public interface IProtocolHandler<TRequest, in TResponse>
 {
-    Task<TRequest> GetRequestAsync(Stream stream, TRequestMetadata requestMetadata);
+    Task<TRequest> GetRequestAsync(Stream stream);
     Task SendResponseAsync(Stream stream, TResponse response);
 }

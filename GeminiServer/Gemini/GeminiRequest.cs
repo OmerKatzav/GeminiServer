@@ -1,8 +1,7 @@
-namespace GeminiServer.Core;
+namespace GeminiServer.Gemini;
 
 public class GeminiRequest
 {
     public required string Path { get; init; }
     public string? QueryString { get; init; }
-    public required GeminiRequestMetadata Metadata { get; init; }
 }

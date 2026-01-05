@@ -1,6 +1,6 @@
 namespace GeminiServer.Abstractions;
 
-public interface IPresentationFactory<in TMetadata>
+public interface IPresentationFactory
 {
-    public IPresentation CreateAndUpdateMetadata(Stream stream, TMetadata metadata);
+    public IPresentation Create(Stream stream, IDictionary<string, object?> metadata);
 }

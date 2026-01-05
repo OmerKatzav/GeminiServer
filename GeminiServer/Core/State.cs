@@ -1,7 +1,6 @@
 namespace GeminiServer.Core;
 
-public record State<TRequest, TResponse>(TRequest Request)
+public record State<TRequest, TResponse>(TRequest Request, IDictionary<string, object?> Metadata)
 {
-    public Dictionary<string, object?> Data { get; init; } = new();
     public TResponse? Response { get; set; }
 }

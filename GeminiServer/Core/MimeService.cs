@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.StaticFiles;
 using MimeDetective;
 
-namespace GeminiServer;
+namespace GeminiServer.Core;
 
 public class MimeService : IMimeService
 {

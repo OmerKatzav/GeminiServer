@@ -1,4 +1,4 @@
-namespace GeminiServer.Core;
+namespace GeminiServer.Gemini;
 
 public class GeminiResponse
 {
