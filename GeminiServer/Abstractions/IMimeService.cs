@@ -1,4 +1,4 @@
-namespace GeminiServer;
+namespace GeminiServer.Abstractions;
 
 public interface IMimeService
 {

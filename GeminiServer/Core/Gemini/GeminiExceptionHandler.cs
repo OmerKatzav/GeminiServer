@@ -1,4 +1,6 @@
-namespace GeminiServer.Gemini;
+using GeminiServer.Abstractions;
+
+namespace GeminiServer.Core.Gemini;
 
 public class GeminiExceptionHandler : IExceptionHandler<GeminiResponse>
 {

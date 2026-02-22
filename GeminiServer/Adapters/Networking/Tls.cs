@@ -1,7 +1,7 @@
 using System.Net.Security;
-using GeminiServer.Abstractions;
+using GeminiServer.Abstractions.Networking;
 
-namespace GeminiServer.Adapters.Presentation;
+namespace GeminiServer.Adapters.Networking;
 
 public class Tls(SslStream stream) : IPresentation
 {

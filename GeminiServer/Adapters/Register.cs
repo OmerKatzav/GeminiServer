@@ -1,6 +1,5 @@
-using GeminiServer.Abstractions;
-using GeminiServer.Adapters.Presentation;
-using GeminiServer.Adapters.Transport;
+using GeminiServer.Abstractions.Networking;
+using GeminiServer.Adapters.Networking;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

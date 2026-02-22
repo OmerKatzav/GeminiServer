@@ -1,3 +1,4 @@
+using GeminiServer.Abstractions;
 using Microsoft.AspNetCore.StaticFiles;
 using MimeDetective;
 

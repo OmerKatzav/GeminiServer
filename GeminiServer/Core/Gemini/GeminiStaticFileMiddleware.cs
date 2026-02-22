@@ -1,12 +1,12 @@
+using GeminiServer.Abstractions;
 using GeminiServer.Config;
-using GeminiServer.Core;
 using Microsoft.Extensions.Options;
 
-namespace GeminiServer.Gemini;
+namespace GeminiServer.Core.Gemini;
 
 public class GeminiStaticFileMiddleware(IOptions<StaticFileConfig> config, IMimeService mimeService) : IMiddleware<State<GeminiRequest, GeminiResponse>>
 {
-    public async Task Invoke(State<GeminiRequest, GeminiResponse> state, Invoke<State<GeminiRequest, GeminiResponse>> next)
+    public async Task InvokeAsync(State<GeminiRequest, GeminiResponse> state, InvokeAsync<State<GeminiRequest, GeminiResponse>> next)
     {
         if (state.Request.Path.IndexOfAny(Path.GetInvalidPathChars()) != -1) throw new GeminiException(GeminiStatusCodes.BadRequest, "Invalid path");
         

@@ -1,10 +1,10 @@
-using GeminiServer.Core;
+using GeminiServer.Abstractions;
 
-namespace GeminiServer.Gemini;
+namespace GeminiServer.Core.Gemini;
 
 public class GeminiBaseMiddleware : IMiddleware<State<GeminiRequest, GeminiResponse>>
 {
-    public Task Invoke(State<GeminiRequest, GeminiResponse> state, Invoke<State<GeminiRequest, GeminiResponse>> next)
+    public Task InvokeAsync(State<GeminiRequest, GeminiResponse> state, InvokeAsync<State<GeminiRequest, GeminiResponse>> next)
     {
         state.Response ??= new GeminiResponse { StatusCode = GeminiStatusCodes.NotFound, Header = "Resource Not Found" };
         return Task.CompletedTask;

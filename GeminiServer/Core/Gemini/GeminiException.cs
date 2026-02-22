@@ -1,4 +1,4 @@
-namespace GeminiServer.Gemini;
+namespace GeminiServer.Core.Gemini;
 
 public class GeminiException : Exception
 {

@@ -1,3 +1,5 @@
+using GeminiServer.Abstractions;
+
 namespace GeminiServer.Core;
 
 public class ClientHandler<TRequest, TResponse>(IProtocolHandler<TRequest, TResponse> protocolHandler, IRequestHandler<TRequest, TResponse> requestHandler, IExceptionHandler<TResponse> exceptionHandler) : IClientHandler

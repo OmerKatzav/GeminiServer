@@ -2,11 +2,12 @@ using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
 using GeminiServer.Abstractions;
+using GeminiServer.Abstractions.Networking;
 using GeminiServer.Config;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace GeminiServer.Adapters.Transport;
+namespace GeminiServer.Adapters.Networking;
 
 public class Tcp(IOptions<NetworkConfig> config, IPresentationFactory presentationFactory, IClientHandler clientHandler, ILogger<Tcp> logger) : ITransport
 {

@@ -1,4 +1,4 @@
-namespace GeminiServer.Abstractions;
+namespace GeminiServer.Abstractions.Networking;
 
 public interface IPresentation
 {

@@ -1,8 +1,9 @@
 using System.Text;
+using GeminiServer.Abstractions;
 using GeminiServer.Config;
 using Microsoft.Extensions.Options;
 
-namespace GeminiServer.Gemini;
+namespace GeminiServer.Core.Gemini;
 
 public class GeminiProtocolHandler(IOptions<NetworkConfig> config) : IProtocolHandler<GeminiRequest, GeminiResponse>
 {

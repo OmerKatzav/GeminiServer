@@ -1,10 +1,10 @@
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-using GeminiServer.Abstractions;
+using GeminiServer.Abstractions.Networking;
 using GeminiServer.Config;
 using Microsoft.Extensions.Options;
 
-namespace GeminiServer.Adapters.Presentation;
+namespace GeminiServer.Adapters.Networking;
 
 public class TlsFactory(IOptions<NetworkConfig> config) : IPresentationFactory
 {
